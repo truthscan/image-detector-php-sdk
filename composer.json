@@ -1,0 +1,33 @@
+{
+  "name": "truthscan/image-detector-client",
+  "description": "Professional PHP client for AI Image Detection API",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://github.com/truthscan/image-detector-php-sdk",
+  "support": {
+    "source": "https://github.com/truthscan/image-detector-php-sdk"
+  },
+  "authors": [
+    {
+      "name": "truthscan.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "UndetectableAI\\ImageDetection\\": "src/"
+    }
+  },
+  "keywords": [
+    "ai",
+    "image-detection",
+    "api-client",
+    "php"
+  ],
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
+
