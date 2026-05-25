@@ -20,10 +20,10 @@ composer require truthscan/image-detector-client
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use UndetectableAI\ImageDetection\ImageDetectionClient;
+use Truthscan\ImageDetection\Client;
 
 $apiKey = getenv('TRUTHSCAN_API_KEY') ?: 'your_api_key_here';
-$client = new ImageDetectionClient($apiKey);
+$client = new Client($apiKey);
 
 $result = $client->detect('/path/to/image.jpg');
 

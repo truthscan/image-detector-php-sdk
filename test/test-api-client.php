@@ -7,12 +7,12 @@
 
 require_once __DIR__ . '/../src/index.php';
 
-use UndetectableAI\ImageDetection\ImageDetectionClient;
-use UndetectableAI\ImageDetection\DefaultConsoleLogger;
-use UndetectableAI\ImageDetection\QueryError;
-use UndetectableAI\ImageDetection\CreditCheckError;
-use UndetectableAI\ImageDetection\CreditCheckResponse;
-use UndetectableAI\ImageDetection\DetectionResult;
+use Truthscan\ImageDetection\Client;
+use Truthscan\ImageDetection\DefaultConsoleLogger;
+use Truthscan\ImageDetection\QueryError;
+use Truthscan\ImageDetection\CreditCheckError;
+use Truthscan\ImageDetection\CreditCheckResponse;
+use Truthscan\ImageDetection\DetectionResult;
 
 class ProcessResult {
     public string $filename;
@@ -70,7 +70,7 @@ function discoverImageFiles(
 }
 
 function processFile(
-    ImageDetectionClient $client,
+    Client $client,
     string $folder,
     string $fileName
 ): ProcessResult {
@@ -185,9 +185,9 @@ function main(): void {
     $MIN_BYTES = 1 * 1024;
     $MAX_BYTES = 10 * 1024 * 1024;
 
-    logMessage('Initializing ImageDetectionClient...');
+    logMessage('Initializing Client...');
     $logger = new DefaultConsoleLogger('info');
-    $client = new ImageDetectionClient($API_KEY, $BASE_URL, null, $logger);
+    $client = new Client($API_KEY, $BASE_URL, null, $logger);
 
     $initialCredits = null;
     try {

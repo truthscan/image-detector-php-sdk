@@ -4,7 +4,7 @@
  * Type definitions for AI Image Detection API Client
  */
 
-namespace UndetectableAI\ImageDetection;
+namespace Truthscan\ImageDetection;
 
 /**
  * Presign response structure

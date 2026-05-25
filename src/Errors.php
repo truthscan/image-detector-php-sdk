@@ -4,7 +4,7 @@
  * Error classes for AI Image Detection API Client
  */
 
-namespace UndetectableAI\ImageDetection;
+namespace Truthscan\ImageDetection;
 
 /**
  * Base API client error

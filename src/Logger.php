@@ -4,7 +4,7 @@
  * Logger interface for the Image Detection Client
  */
 
-namespace UndetectableAI\ImageDetection;
+namespace Truthscan\ImageDetection;
 
 /**
  * Logger interface

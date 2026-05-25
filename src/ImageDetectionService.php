@@ -4,7 +4,7 @@
  * Low-level service for interacting with AI Image Detection API
  */
 
-namespace UndetectableAI\ImageDetection;
+namespace Truthscan\ImageDetection;
 
 class ImageDetectionService
 {

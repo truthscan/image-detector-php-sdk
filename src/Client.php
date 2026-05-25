@@ -4,9 +4,9 @@
  * High-level client for AI Image Detection API
  */
 
-namespace UndetectableAI\ImageDetection;
+namespace Truthscan\ImageDetection;
 
-class ImageDetectionClient
+class Client
 {
     private ImageDetectionService $service;
     private string $baseUrl;
