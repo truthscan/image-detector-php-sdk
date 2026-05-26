@@ -72,13 +72,13 @@ Create a new PHP file (e.g., `test-client.php`):
 // Include the client
 require_once __DIR__ . '/src/index.php';
 
-use Truthscan\ImageDetection\Client;
+use Truthscan\ImageDetection\ImageDetectionClient;
 
 // Your API key
 $apiKey = 'your-api-key-here';
 
 // Initialize the client
-$client = new Client($apiKey);
+$client = new ImageDetectionClient($apiKey);
 
 // Path to your image file
 $imagePath = '/path/to/your/image.jpg';
@@ -124,7 +124,7 @@ Here's a complete working example:
 
 require_once __DIR__ . '/src/index.php';
 
-use Truthscan\ImageDetection\Client;
+use Truthscan\ImageDetection\ImageDetectionClient;
 use Truthscan\ImageDetection\DefaultConsoleLogger;
 
 // Configuration
@@ -135,7 +135,7 @@ $imagePath = __DIR__ . '/sample-image.jpg';  // Change to your image path
 $logger = new DefaultConsoleLogger('info');
 
 // Initialize client
-$client = new Client($apiKey, null, null, $logger);
+$client = new ImageDetectionClient($apiKey, null, null, $logger);
 
 try {
     echo "=== AI Image Detection Client ===\n\n";
@@ -212,7 +212,7 @@ $result = $client->detect(
 ### With Custom Timeout
 
 ```php
-$client = new Client(
+$client = new ImageDetectionClient(
     $apiKey,
     'https://ai-image-detect.undetectable.ai',  // Base URL
     180,  // 3 minute timeout
@@ -226,7 +226,7 @@ $client = new Client(
 use Truthscan\ImageDetection\DefaultConsoleLogger;
 
 $logger = new DefaultConsoleLogger('debug');  // Shows all log messages
-$client = new Client($apiKey, null, null, $logger);
+$client = new ImageDetectionClient($apiKey, null, null, $logger);
 ```
 
 ## Testing with Sample Image
@@ -281,7 +281,7 @@ php -m | grep curl
 - Ensure API key is not expired
 
 ### Timeout Errors
-- Increase timeout in client constructor: `new Client($apiKey, null, 300)`
+- Increase timeout in client constructor: `new ImageDetectionClient($apiKey, null, 300)`
 - Check network connectivity
 - Verify API endpoint is accessible
 

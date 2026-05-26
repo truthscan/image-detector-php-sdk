@@ -7,7 +7,7 @@
 
 require_once __DIR__ . '/../src/index.php';
 
-use Truthscan\ImageDetection\Client;
+use Truthscan\ImageDetection\ImageDetectionClient;
 use Truthscan\ImageDetection\DefaultConsoleLogger;
 use Truthscan\ImageDetection\QueryError;
 use Truthscan\ImageDetection\CreditCheckError;
@@ -70,7 +70,7 @@ function discoverImageFiles(
 }
 
 function processFile(
-    Client $client,
+    ImageDetectionClient $client,
     string $folder,
     string $fileName
 ): ProcessResult {
@@ -185,9 +185,9 @@ function main(): void {
     $MIN_BYTES = 1 * 1024;
     $MAX_BYTES = 10 * 1024 * 1024;
 
-    logMessage('Initializing Client...');
+    logMessage('Initializing ImageDetectionClient...');
     $logger = new DefaultConsoleLogger('info');
-    $client = new Client($API_KEY, $BASE_URL, null, $logger);
+    $client = new ImageDetectionClient($API_KEY, $BASE_URL, null, $logger);
 
     $initialCredits = null;
     try {
