@@ -115,11 +115,14 @@ class ImageDetectionService
         $this->logger->info("Requesting presigned URL for file: {$fileName}");
 
         try {
-            $url = $this->baseUrl . '/get-presigned-url?file_name=' . urlencode($fileName);
+            $nonce = (int) round(microtime(true) * 1000);
+            $url = $this->baseUrl . '/get-presigned-url?file_name=' . urlencode($fileName) . '&_t=' . $nonce;
 
             $response = $this->makeRequest($url, [
                 CURLOPT_HTTPHEADER => [
                     "apikey: {$this->apiKey}",
+                    'Cache-Control: no-cache, no-store',
+                    'Pragma: no-cache',
                 ],
             ]);
 
