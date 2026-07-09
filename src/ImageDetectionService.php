@@ -268,6 +268,8 @@ class ImageDetectionService
             'document_type' => 'Image',
             'model' => 'generic',
             'generate_preview' => $generatePreview,
+            'generate_analysis_details' => true,
+            'generate_unbiased_analysis_details' => true,
         ];
 
         if ($email) {
@@ -392,6 +394,19 @@ class ImageDetectionService
     }
 
     /**
+     * @param QueryResponse $result
+     */
+    private function isAnalysisReady(QueryResponse $result): bool
+    {
+        $analysisStatus = $result->result_details?->analysis_results_status ?? null;
+        if ($analysisStatus === null) {
+            return true;
+        }
+
+        return in_array($analysisStatus, ['done', 'ready', 'skipped'], true);
+    }
+
+    /**
      * Poll for detection results until completion.
      * 
      * Continues polling until status is "done" or "failed"
@@ -428,11 +443,16 @@ class ImageDetectionService
                 $status = $result->status ?? 'unknown';
 
                 if ($status === 'done' || $status === 'failed') {
-                    $finalResult = $result;
-                    $this->logger->info(
-                        "Polling completed. Status: {$status} (attempt {$attemptIdx}/{$maxAttempts})"
+                    if ($status === 'failed' || $this->isAnalysisReady($result)) {
+                        $finalResult = $result;
+                        $this->logger->info(
+                            "Polling completed. Status: {$status} (attempt {$attemptIdx}/{$maxAttempts})"
+                        );
+                        break;
+                    }
+                    $this->logger->debug(
+                        'Detection done but analysis still pending, continuing to poll...'
                     );
-                    break;
                 }
 
                 if ($attemptIdx < $maxAttempts) {

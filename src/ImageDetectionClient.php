@@ -108,8 +108,8 @@ class ImageDetectionClient
 
     private function getCdnBaseUrl(): string
     {
-        $host = parse_url($this->baseUrl, PHP_URL_HOST);
-        if ($host === 'ai-image-detect.undetectable.ai') {
+        if (str_contains($this->baseUrl, 'undetectable.ai') ||
+            str_contains($this->baseUrl, 'truthscan.com')) {
             return 'https://ai-image-detector-prod.nyc3.digitaloceanspaces.com/';
         }
 
